@@ -4,7 +4,11 @@ import java.sql.*;
 
 public class Main {
     public static void inserirRegistro(Statement statement, String sql) throws SQLException {
+        int rows = statement.executeUpdate(sql);
 
+        if (rows > 0) {
+            System.out.println("Registro inserido!");
+        }
     }
     public static void main(String[] args) throws SQLException {
         String jdbcURL = "jdbc:h2:mem:test";
@@ -22,11 +26,16 @@ public class Main {
         System.out.println("Tabela criada!");
 
         sql = "INSERT INTO carrinho VALUES (1, 'Nutella', 5, 36.00)";
-        int rows = statement.executeUpdate(sql);
+        Main.inserirRegistro(statement, sql);
 
-        if (rows > 0) {
-            System.out.println("Registro inserido!");
-        }
+        sql = "INSERT INTO carrinho VALUES (2, 'iPhone 12s', 10, 4000.00)";
+        Main.inserirRegistro(statement, sql);
+
+        sql = "INSERT INTO carrinho VALUES (3, 'Toblerone', 5, 25.00)";
+        Main.inserirRegistro(statement, sql);
+
+        sql = "INSERT INTO carrinho VALUES (4, 'RTX 3070 TI', 2, 4600.00)";
+        Main.inserirRegistro(statement, sql);
 
         sql = "SELECT * FROM carrinho";
 
