@@ -20,4 +20,11 @@ public class ProdutoResource {
         model.addAttribute("nome", name);
         return "greeting";
     }
+
+    @GetMapping("carrinho")
+    public String getAllProdutos(Model model) {
+        List<Produto> lista = produtoService.getAllProdutos();
+        model.addAttribute("lista", lista);
+        return "carrinho";
+    }
 }
